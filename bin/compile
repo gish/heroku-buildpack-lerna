@@ -30,7 +30,6 @@ mv "${BUILD_DIR}/packages/${APP_BASE}" "${STAGE}"
 rm -rf "${BUILD_DIR}"
 mkdir "${BUILD_DIR}"
 mv "${STAGE}" "${BUILD_DIR}"
-ls "${STAGE}"
 ls "${BUILD_DIR}"
 
 
