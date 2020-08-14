@@ -26,10 +26,10 @@ lerna run build --scope="${APP_BASE}" --include-dependencies --stream 2>&1 | out
 
 header "Copying static app files to root"
 cd ../
-mv "${BUILD_DIR}/${APP_BASE}" "${STAGE}"
+mv "${BUILD_DIR}/packages/${APP_BASE}" "${STAGE}"
 rm -rf "${BUILD_DIR}"
 mkdir "${BUILD_DIR}"
-mv "${STAGE}" "${BUILD_DIR}/build"
+mv "${STAGE}" "${BUILD_DIR}"
 
 
 #header "Generating static.json"
