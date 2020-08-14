@@ -14,8 +14,6 @@ if [ ! -f "${ENV_DIR}/APP_BASE" ]; then
     exit 1
 fi
 
-APP_BASE="$(cat "${ENV_DIR}/APP_BASE")"
-
 cd "${BUILD_DIR}"
 
 header "Installing dependencies (lerna bootstrap)"
@@ -26,7 +24,12 @@ lerna run build --include-dependencies --stream 2>&1 | output
 
 header "Copying static app files to root"
 cd ../
-mv "${BUILD_DIR}/${APP_BASE}" "${STAGE}" && rm -rf "${BUILD_DIR}" && mv "${STAGE}/$(basename "$APP_BASE")" "${BUILD_DIR}"
+APP_BASE="$(cat "${ENV_DIR}/APP_BASE")"
+(
+    mv "${BUILD_DIR}/${APP_BASE}" "${STAGE}" &&
+    rm -rf "${BUILD_DIR}" &&
+    mv "${STAGE}/$(basename "$APP_BASE")" "${BUILD_DIR}"
+)
 
 
 
